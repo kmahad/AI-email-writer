@@ -120,7 +120,7 @@ export default function App() {
         model = localStorage.getItem('openai_model') || 'gpt-4o-mini';
       } else if (provider === 'gemini') {
         apiKey = localStorage.getItem('gemini_api_key') || undefined;
-        model = localStorage.getItem('gemini_model') || 'gemini-1.5-flash';
+        model = localStorage.getItem('gemini_model') || 'gemini-2.5-flash';
       } else if (provider === 'ollama') {
         model = localStorage.getItem('ollama_model') || 'llama3';
         localUrl = localStorage.getItem('ollama_url') || 'http://localhost:11434';
