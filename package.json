@@ -1,0 +1,52 @@
+{
+  "name": "ai-email-writer",
+  "version": "1.0.0",
+  "description": "Desktop AI-powered Email Writer — generate context-aware emails with customizable tone",
+  "main": "electron/main.js",
+  "author": "AHAD",
+  "license": "MIT",
+  "scripts": {
+    "backend": "cd backend && node server.js",
+    "frontend": "cd frontend && npm run dev",
+    "dev": "concurrently --names BACKEND,FRONTEND --prefix-colors blue,green \"npm run backend\" \"npm run frontend\"",
+    "electron:dev": "concurrently --names FRONTEND,ELECTRON --prefix-colors green,magenta \"npm run frontend\" \"npx wait-on http://localhost:5173 && npx electron .\"",
+    "frontend:build": "cd frontend && npm run build",
+    "dist": "npm run frontend:build && npx electron-builder --win"
+  },
+  "build": {
+    "appId": "com.ahad.ai-email-writer",
+    "productName": "AI Email Writer",
+    "directories": {
+      "output": "dist-electron"
+    },
+    "files": [
+      "electron/**/*",
+      "backend/**/*",
+      "frontend/dist/**/*",
+      "!**/node_modules/.cache",
+      "!**/.env"
+    ],
+    "extraResources": [
+      {
+        "from": "backend/node_modules",
+        "to": "backend/node_modules",
+        "filter": ["**/*"]
+      }
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "assets/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerHeaderIcon": "assets/icon.ico"
+    }
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "electron": "^33.3.1",
+    "electron-builder": "^25.1.8",
+    "wait-on": "^8.0.2"
+  }
+}
