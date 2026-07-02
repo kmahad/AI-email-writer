@@ -37,10 +37,20 @@ export default function HistoryPanel({ drafts, activeDraftId, onSelectDraft, onD
     return d.toLocaleDateString();
   };
 
+  const truncatePreview = (text, max = 60) => {
+    if (!text) return '';
+    return text.length > max ? text.slice(0, max) + '…' : text;
+  };
+
   return (
     <aside className="sidebar">
       <div className="sidebar-header">
-        <h3 className="sidebar-title">💾 Saved Drafts</h3>
+        <h3 className="sidebar-title">
+          Drafts
+          {drafts.length > 0 && (
+            <span className="sidebar-count">{drafts.length}</span>
+          )}
+        </h3>
         <input
           className="sidebar-search"
           type="text"
@@ -69,11 +79,14 @@ export default function HistoryPanel({ drafts, activeDraftId, onSelectDraft, onD
               id={`draft-${draft.id}`}
             >
               <div className="draft-card-topic">{draft.subject || draft.topic}</div>
+              {draft.body && (
+                <div className="draft-card-preview">{truncatePreview(draft.body)}</div>
+              )}
               <div className="draft-card-meta">
                 <span
                   className="draft-card-tone"
                   style={{
-                    background: `${toneColors[draft.tone] || '#6366f1'}20`,
+                    background: `${toneColors[draft.tone] || '#6366f1'}18`,
                     color: toneColors[draft.tone] || '#6366f1',
                   }}
                 >

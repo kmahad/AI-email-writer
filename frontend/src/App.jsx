@@ -270,6 +270,7 @@ export default function App() {
             <div className="loading-container">
               <div className="loading-spinner"></div>
               <div className="loading-text">AI is crafting your email...</div>
+              <div className="loading-subtext">This usually takes a few seconds</div>
             </div>
           )}
 
@@ -291,9 +292,22 @@ export default function App() {
               <div className="welcome-icon">✉️</div>
               <h3 className="welcome-title">Ready to Write</h3>
               <p className="welcome-desc">
-                Fill in the topic, recipient, and choose a tone above.
-                Click "Generate Email" and let AI do the magic!
+                Fill in the details above, pick a tone, and let AI craft the perfect email for you.
               </p>
+              <div className="welcome-steps">
+                <div className="welcome-step">
+                  <div className="welcome-step-num">1</div>
+                  <div className="welcome-step-text">Fill Details</div>
+                </div>
+                <div className="welcome-step">
+                  <div className="welcome-step-num">2</div>
+                  <div className="welcome-step-text">Pick Tone</div>
+                </div>
+                <div className="welcome-step">
+                  <div className="welcome-step-num">3</div>
+                  <div className="welcome-step-text">Generate</div>
+                </div>
+              </div>
             </div>
           )}
         </main>

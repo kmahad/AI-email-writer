@@ -58,6 +58,10 @@ export default function SettingsModal({ isOpen, onClose }) {
     localStorage.setItem('ollama_model', ollamaModel.trim() || 'llama3');
 
     setSaved(true);
+    
+    // Dispatch event to update components in the same window (e.g. Header)
+    window.dispatchEvent(new Event('settings-changed'));
+
     setTimeout(() => onClose(), 800);
   };
 

@@ -34,12 +34,14 @@ export default function EmailOutput({
   };
 
   const wordCount = body.trim().split(/\s+/).filter(Boolean).length;
+  const charCount = body.length;
 
   return (
     <section className="output-section">
       <div className="output-header">
         <h2 className="output-title">
           📧 Generated Email
+          <span className="output-title-badge">Ready</span>
         </h2>
         <div className="output-actions">
           <button
@@ -62,6 +64,7 @@ export default function EmailOutput({
         </div>
       </div>
 
+      <div className="output-field-label">Subject</div>
       <input
         className="output-subject"
         type="text"
@@ -71,6 +74,7 @@ export default function EmailOutput({
         id="email-subject"
       />
 
+      <div className="output-field-label">Body</div>
       <textarea
         className="output-body"
         value={body}
@@ -80,7 +84,9 @@ export default function EmailOutput({
 
       <div className="output-footer">
         <span className="output-meta">
-          {wordCount} words • Editable — make it yours
+          <span className="output-meta-item">📝 {wordCount} words</span>
+          <span className="output-meta-item">🔤 {charCount} chars</span>
+          <span className="output-meta-item">✏️ Editable</span>
         </span>
         <div style={{ display: 'flex', gap: '8px' }}>
           <button
